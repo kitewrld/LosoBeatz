@@ -9,3 +9,8 @@ spring:
     password: 1237
   thymeleaf:
     cache: false
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+
