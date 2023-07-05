@@ -8,7 +8,8 @@ spring:
     username: user_losobeatz
     password: 1237
   thymeleaf:
-    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
 
     jpa:
       hibernate:
