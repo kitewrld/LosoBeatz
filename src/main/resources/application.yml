@@ -1,5 +1,11 @@
 server:
   port: 8083
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
 spring:
   datasource:
@@ -7,14 +13,18 @@ spring:
     url: jdbc:mysql://localhost:3306/db_losobeatz?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: user_losobeatz
     password: 1237
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+    thymeleaf:
+      cache: false
+
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .mustache
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: false
-    show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
 
