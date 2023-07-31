@@ -18,15 +18,6 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User userEntity = userRepository.findByUsername(username);
-//        if (userEntity != null) {
-//            return new PrincipalDetails(userEntity);
-//        }
-//        return null;
-//    }
-
     // UserDetails 객체를 반환하도록 수정함.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
