@@ -77,17 +77,17 @@ public class IndexController {
         return "profile";
     }
 
-    @PostMapping("/profile/update")
-    public String updateProfile(@ModelAttribute User user, Principal principal, RedirectAttributes redirectAttributes) {
+    @PostMapping("/profile")
+    public String updateProfile(@ModelAttribute User user, Principal principal, Model model) {
         User currentUser = userRepository.findByUsername(principal.getName());
         if (bCryptPasswordEncoder.matches(user.getPassword(), currentUser.getPassword())) {
             currentUser.setEmail(user.getEmail());
             userRepository.save(currentUser);
-            redirectAttributes.addFlashAttribute("message", "Profile updated successfully!");
-            return "redirect:/login_completed.html";
+            model.addAttribute("message", "Profile updated successfully!");
+            return "profile";
         } else {
-            redirectAttributes.addFlashAttribute("error", "Invalid password!");
-            return "redirect:/profile.html";
+            model.addAttribute("error", "Invalid password!");
+            return "profile";
         }
     }
 

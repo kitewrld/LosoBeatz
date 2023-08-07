@@ -24,6 +24,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        return new BCryptPasswordEncoder();
 //    }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.authorizeRequests()
+//                .antMatchers("/user/**").authenticated()
+//                .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .loginPage("/loginForm")
+//                .loginProcessingUrl("/login")
+//                .defaultSuccessUrl("/login_completed")
+//                .and()
+//                .oauth2Login()
+//                .loginPage("/loginForm")
+//                .userInfoEndpoint()
+//                .userService(principalOauth2UserService);
+//    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -42,5 +61,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/loginForm")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 }
+
+

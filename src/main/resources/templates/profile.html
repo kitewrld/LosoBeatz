@@ -208,7 +208,8 @@ Purchase:
 							<li><a href="../static/manage_acc.html" target="_blank">Pricing Plan</a></li>
 							<li><a href="../static/blog.html" target="_blank">Blog</a></li>
 							<li><a href="">Setting</a></li>
-							<li><a href="">Logout</a></li>
+<!--							<li><a href="">Logout</a></li>-->
+                            <li><a href="#" onclick="logout()">Logout</a></li>
 						</ul>
                     </div>
                 </div>
@@ -223,7 +224,7 @@ Purchase:
                             <i class="fa_icon edit_icon"></i>
                         </div>
                     </div>
-                    <form th:action="@{/profile/update}" th:object="${user}" method="post">
+                    <form th:action="@{/profile}" th:object="${user}" method="post">
                         <div class="form-group">
                             <label for="username">Your Name *</label>
                             <input type="text" th:field="*{username}" class="form-control" id="username" readonly>
@@ -686,8 +687,30 @@ Purchase:
                 </div>
             </div>
         </div>
-	</div>	
-	
+	</div>
+
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                var message = /*[[${message}]]*/ 'default';
+                var error = /*[[${error}]]*/ 'default';
+                if(message !== 'default') {
+                    alert('변경 완료! 비밀번호, 이메일이 변경되었습니다.');
+                } else if(error !== 'default') {
+                    alert('비밀번호, 이메일 변경중 오류가 발생했습니다.');
+                }
+                /*]]>*/
+            </script>
+
+            <script>
+                function logout() {
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/logout';
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            </script>
+
     <!--Main js file Style-->
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>

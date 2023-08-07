@@ -213,7 +213,7 @@ Purchase:
                             <li><a href="../static/manage_acc.html" target="_blank">Pricing Plan</a></li>
                             <li><a href="../static/blog.html" target="_blank">Blog</a></li>
                             <li><a href="">Setting</a></li>
-                            <li><a href="">Logout</a></li>
+                            <li><a href="#" onclick="logout()">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -2621,7 +2621,18 @@ Purchase:
                 </div>
             </div>
         </div>
-	</div>		
+	</div>
+
+    <script>
+        function logout() {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/logout';
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
     <!--Main js file Style-->
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
